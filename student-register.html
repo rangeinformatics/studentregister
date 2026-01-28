@@ -1,444 +1,171 @@
 <!DOCTYPE html>
-<script src="assets/js/auth.js"></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Register – Ponderr Schoolz</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/register.js"></script>
+</head>
+
+<body class="theme-light">
+
 <script>
   const school = getActiveSchool();
   if (!school) window.location.href = "index.html";
 </script>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Student Admission Register</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      margin: 10px;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #000;
-      padding-bottom: 5px;
-    }
-    header .school-info {
-      text-align: center;
-      flex: 1;
-    }
-    header img {
-      height: 50px;
-      width: 50px;
-      object-fit: contain;
-    }
-    .controls {
-      margin: 10px 0;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-    th, td {
-      border: 1px solid #000;
-      padding: 3px;
-      text-align: left;
-      vertical-align: top;
-    }
-    th {
-      background: #f0f0f0;
-      font-size: 11px;
-    }
-    input, select {
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 11px;
-    }
-    .btn {
-      padding: 4px 8px;
-      font-size: 11px;
-      cursor: pointer;
-    }
-    @media print {
-      @page {
-        size: A4 landscape;
-        margin: 10mm;
-      }
-      .no-print {
-        display: none !important;
-      }
-      body {
-        margin: 0;
-      }
-    }
-  </style>
-  <!-- SheetJS for Excel export -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-</head>
-<body>
-  <header> <img src="assets/logos/${school.logo}" height="60"> <div class="school-info"> <h2>${school.name}</h2> <h4>${school.location}</h4> <h3>Admission Register</h3> </div> </header>
-  
-  <!header>
-    <!div style="width:60px;">
-      <!-- Replace src with actual logo -->
-      <!img src="" alt="Logo" />
-    <!/div>
-    <!div class="school-info">
-      <!div><!strong id="schoolNameHeader">School Name<!/strong><!/div>
-      <!div>Academic Year: <!span id="academicYearLabel">2026-27<!/span><!/div>
-      <!div><!strong>Admission Register – Student List<!/strong><!/div>
-    <!/div>
-    <!div style="width:60px;"><!/div>
-  <!/header>
 
-  <div class="controls no-print">
-    <label>
-      <strong>School:</strong>
-      <select id="schoolSelect">
-        <option value="Little Angels School">Little Angels School</option>
-        <option value="MAM School">MAM School</option>
-        <!-- Add more schools here -->
-      </select>
-    </label>
-    <label>
-      <strong>Academic Year:</strong>
-      <input type="text" id="academicYearInput" value="2026-27" />
-    </label>
-    <button class="btn" onclick="addRow()">Add Row</button>
-    <button class="btn" onclick="saveCurrentSchool()">Save</button>
-    <button class="btn" onclick="printPage()">Print</button>
-    <button class="btn" onclick="exportAllSchoolsToExcel()">Export All Schools to Excel</button>
+<!-- HEADER -->
+<header class="app-header">
+  <div class="app-header-left">
+    <div class="app-logo">
+      <img src="assets/logos/ponderr.png" alt="Ponderr Schoolz Logo">
+    </div>
+    <div class="app-title">
+      <h1>Ponderr Schoolz</h1>
+      <span>Unified School Management Portal</span>
+    </div>
   </div>
 
-  <table id="studentTable">
+  <nav class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="inquiry.html">Inquiry</a>
+    <a href="student-register.html" class="active">Register</a>
+    <a href="signup.html">Add School</a>
+  </nav>
+
+  <div class="theme-switcher">
+    <button onclick="setTheme('theme-light')" class="btn-ghost">Light</button>
+    <button onclick="setTheme('theme-dark')" class="btn-ghost">Dark</button>
+    <button onclick="setTheme('theme-contrast')" class="btn-ghost">Contrast</button>
+  </div>
+</header>
+
+<!-- PAGE CONTENT -->
+<div class="page">
+
+  <!-- SCHOOL HEADER -->
+  <div class="context-bar">
+    <div class="context-bar-left">
+      <strong>School:</strong> <span id="schoolName"></span>
+      <strong>Location:</strong> <span id="schoolLocation"></span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("schoolName").textContent = school.name;
+    document.getElementById("schoolLocation").textContent = school.location;
+  </script>
+
+  <!-- GALLERY SECTION -->
+  <h2>Our Schools & Activities</h2>
+  <div class="scroll-gallery">
+    <div class="scroll-track">
+      <img src="assets/gallery/school1.jpg">
+      <img src="assets/gallery/school2.jpg">
+      <img src="assets/gallery/activity1.jpg">
+      <img src="assets/gallery/activity2.jpg">
+      <img src="assets/gallery/activity3.jpg">
+    </div>
+  </div>
+
+  <!-- APPS BANNER -->
+  <h2>Educational Apps</h2>
+  <div class="apps-banner">
+    <a href="https://byjus.com" target="_blank"><img src="assets/apps/byjus.png"></a>
+    <a href="https://khanacademy.org" target="_blank"><img src="assets/apps/khan.png"></a>
+    <a href="https://duolingo.com" target="_blank"><img src="assets/apps/duolingo.png"></a>
+    <a href="https://vedantu.com" target="_blank"><img src="assets/apps/vedantu.png"></a>
+  </div>
+
+  <!-- ANNOUNCEMENTS -->
+  <h2>Announcements & Live Sessions</h2>
+
+  <div class="grade-tabs">
+    <button onclick="showAnnouncements('LKG')">LKG</button>
+    <button onclick="showAnnouncements('UKG')">UKG</button>
+    <button onclick="showAnnouncements('Grade1')">Grade 1</button>
+    <button onclick="showAnnouncements('Grade2')">Grade 2</button>
+    <button onclick="showAnnouncements('Grade3')">Grade 3</button>
+  </div>
+
+  <table class="announcement-table" id="announcementTable">
     <thead>
       <tr>
-        <th>Sl. No</th>
-        <th>Admission No / UID</th>
-        <th>Student Name</th>
-        <th>Father / Mother / Guardian Name</th>
-        <th>Mobile Number</th>
-        <th>Present – Admitted? (Y/N)</th>
-        <th>Present Grade</th>
-        <th>Previous Schooling? (Y/N)</th>
-        <th>Previous Grade</th>
-        <th>Eng</th>
-        <th>Kan</th>
-        <th>Hin</th>
-        <th>Sci</th>
-        <th>Maths</th>
-        <th>Soc/EVS</th>
-        <th>Sports</th>
-        <th>Coding</th>
-        <th>Remarks</th>
-        <th>Signature</th>
+        <th>Session</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Link</th>
       </tr>
     </thead>
-    <tbody id="studentTableBody">
-    </tbody>
+    <tbody></tbody>
   </table>
 
   <script>
-    const PRESENT_GRADES = [
-      "LKG","UKG",
-      "Grade 1","Grade 2","Grade 3","Grade 4","Grade 5",
-      "Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"
-    ];
-    const PREVIOUS_GRADES = [
-      "Nursery","LKG","UKG",
-      "Grade 1","Grade 2","Grade 3","Grade 4","Grade 5",
-      "Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"
-    ];
-    const RESULT_OPTIONS = ["Passed","Failed","Average"];
-    const STORAGE_KEY = "schoolStudentLists_v1";
+    const announcements = {
+      LKG: [
+        { session: "Phonics Live", date: "Feb 2", time: "10:00 AM", link: "#" },
+        { session: "Story Time", date: "Feb 3", time: "11:00 AM", link: "#" }
+      ],
+      UKG: [
+        { session: "Math Basics", date: "Feb 4", time: "9:30 AM", link: "#" }
+      ],
+      Grade1: [
+        { session: "EVS – Plants", date: "Feb 5", time: "12:00 PM", link: "#" }
+      ],
+      Grade2: [],
+      Grade3: []
+    };
 
-    let allSchoolData = {}; // { [schoolName]: [rows] }
+    function showAnnouncements(grade) {
+      const tbody = document.querySelector("#announcementTable tbody");
+      tbody.innerHTML = "";
 
-    function loadFromStorage() {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        try {
-          allSchoolData = JSON.parse(raw);
-        } catch (e) {
-          allSchoolData = {};
-        }
-      }
-    }
-
-    function saveToStorage() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(allSchoolData));
-    }
-
-    function getCurrentSchoolName() {
-      return document.getElementById("schoolSelect").value;
-    }
-
-    function syncHeader() {
-      const schoolName = getCurrentSchoolName();
-      document.getElementById("schoolNameHeader").textContent = schoolName;
-      const ay = document.getElementById("academicYearInput").value;
-      document.getElementById("academicYearLabel").textContent = ay;
-    }
-
-    function createSelect(options, includeEmpty = true) {
-      const sel = document.createElement("select");
-      if (includeEmpty) {
-        const opt = document.createElement("option");
-        opt.value = "";
-        opt.textContent = "";
-        sel.appendChild(opt);
-      }
-      options.forEach(o => {
-        const opt = document.createElement("option");
-        opt.value = o;
-        opt.textContent = o;
-        sel.appendChild(opt);
+      announcements[grade].forEach(a => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${a.session}</td>
+          <td>${a.date}</td>
+          <td>${a.time}</td>
+          <td><a href="${a.link}" target="_blank">Join</a></td>
+        `;
+        tbody.appendChild(tr);
       });
-      return sel;
     }
 
-    function addRow(rowData = null) {
-      const tbody = document.getElementById("studentTableBody");
-      const tr = document.createElement("tr");
-      const rowIndex = tbody.children.length + 1;
-
-      function tdWithInput(value = "") {
-        const td = document.createElement("td");
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = value || "";
-        td.appendChild(input);
-        return td;
-      }
-
-      // Sl. No (read-only)
-      const tdSl = document.createElement("td");
-      tdSl.textContent = rowIndex;
-      tr.appendChild(tdSl);
-
-      // Admission No / UID
-      tr.appendChild(tdWithInput(rowData?.admissionNo));
-
-      // Student Name
-      tr.appendChild(tdWithInput(rowData?.studentName));
-
-      // Guardian Name
-      tr.appendChild(tdWithInput(rowData?.guardianName));
-
-      // Mobile
-      tr.appendChild(tdWithInput(rowData?.mobile));
-
-      // Present – Admitted? (Y/N)
-      const tdPresent = document.createElement("td");
-      const selPresent = createSelect(["Yes","No"]);
-      selPresent.value = rowData?.presentAdmitted || "";
-      tdPresent.appendChild(selPresent);
-      tr.appendChild(tdPresent);
-
-      // Present Grade
-      const tdPresentGrade = document.createElement("td");
-      const selPresentGrade = createSelect(PRESENT_GRADES);
-      selPresentGrade.value = rowData?.presentGrade || "";
-      tdPresentGrade.appendChild(selPresentGrade);
-      tr.appendChild(tdPresentGrade);
-
-      // Previous Schooling? (Y/N)
-      const tdPrevSchooling = document.createElement("td");
-      const selPrevSchooling = createSelect(["Yes","No"]);
-      selPrevSchooling.value = rowData?.previousSchooling || "";
-      tdPrevSchooling.appendChild(selPrevSchooling);
-      tr.appendChild(tdPrevSchooling);
-
-      // Previous Grade
-      const tdPrevGrade = document.createElement("td");
-      const selPrevGrade = createSelect(PREVIOUS_GRADES);
-      selPrevGrade.value = rowData?.previousGrade || "";
-      tdPrevGrade.appendChild(selPrevGrade);
-      tr.appendChild(tdPrevGrade);
-
-      // Entrance Test Results (8 subjects)
-      const subjects = ["eng","kan","hin","sci","maths","soc","sports","coding"];
-      subjects.forEach(sub => {
-        const td = document.createElement("td");
-        const sel = createSelect(RESULT_OPTIONS);
-        sel.value = rowData?.results?.[sub] || "";
-        td.appendChild(sel);
-        tr.appendChild(td);
-      });
-
-      // Remarks
-      tr.appendChild(tdWithInput(rowData?.remarks));
-
-      // Signature
-      tr.appendChild(tdWithInput(rowData?.signature));
-
-      // Logic: auto previous grade when present grade changes
-      selPresentGrade.addEventListener("change", () => {
-        autoSetPreviousGrade(selPresentGrade, selPrevGrade);
-      });
-
-      tbody.appendChild(tr);
-    }
-
-    function autoSetPreviousGrade(selPresentGrade, selPrevGrade) {
-      const pg = selPresentGrade.value;
-      if (!pg) return;
-      const order = PREVIOUS_GRADES;
-      // Map present grade to previous grade
-      let target;
-      if (pg === "LKG") target = "Nursery";
-      else if (pg === "UKG") target = "LKG";
-      else {
-        const idx = order.indexOf(pg);
-        if (idx > 0) target = order[idx - 1];
-      }
-      if (target) selPrevGrade.value = target;
-    }
-
-    function clearTable() {
-      document.getElementById("studentTableBody").innerHTML = "";
-    }
-
-    function loadSchoolIntoTable(schoolName) {
-      syncHeader();
-      clearTable();
-      const rows = allSchoolData[schoolName] || [];
-      if (rows.length === 0) {
-        // Start with a few empty rows
-        for (let i = 0; i < 5; i++) addRow();
-      } else {
-        rows.forEach(r => addRow(r));
-      }
-    }
-
-    function collectCurrentTableData() {
-      const tbody = document.getElementById("studentTableBody");
-      const rows = [];
-      for (let i = 0; i < tbody.children.length; i++) {
-        const tr = tbody.children[i];
-        const tds = tr.children;
-
-        const getInputValue = (tdIndex) =>
-          tds[tdIndex].querySelector("input")?.value || "";
-        const getSelectValue = (tdIndex) =>
-          tds[tdIndex].querySelector("select")?.value || "";
-
-        const row = {
-          admissionNo: getInputValue(1),
-          studentName: getInputValue(2),
-          guardianName: getInputValue(3),
-          mobile: getInputValue(4),
-          presentAdmitted: getSelectValue(5),
-          presentGrade: getSelectValue(6),
-          previousSchooling: getSelectValue(7),
-          previousGrade: getSelectValue(8),
-          results: {
-            eng: getSelectValue(9),
-            kan: getSelectValue(10),
-            hin: getSelectValue(11),
-            sci: getSelectValue(12),
-            maths: getSelectValue(13),
-            soc: getSelectValue(14),
-            sports: getSelectValue(15),
-            coding: getSelectValue(16),
-          },
-          remarks: getInputValue(17),
-          signature: getInputValue(18),
-        };
-        rows.push(row);
-      }
-      return rows;
-    }
-
-    function saveCurrentSchool() {
-      const schoolName = getCurrentSchoolName();
-      const rows = collectCurrentTableData();
-      allSchoolData[schoolName] = rows;
-      saveToStorage();
-      alert("Saved for " + schoolName);
-    }
-
-    function printPage() {
-      syncHeader();
-      window.print();
-    }
-
-    function exportAllSchoolsToExcel() {
-      const wb = XLSX.utils.book_new();
-
-      Object.keys(allSchoolData).forEach((schoolName) => {
-        const rows = allSchoolData[schoolName] || [];
-        const data = [];
-
-        // Header row
-        data.push([
-          "Sl. No",
-          "Admission No / UID",
-          "Student Name",
-          "Father/Mother/Guardian",
-          "Mobile",
-          "Present Admitted",
-          "Present Grade",
-          "Previous Schooling",
-          "Previous Grade",
-          "English",
-          "Kannada",
-          "Hindi",
-          "Science",
-          "Maths",
-          "Social/EVS",
-          "Sports",
-          "Coding",
-          "Remarks",
-          "Signature"
-        ]);
-
-        rows.forEach((r, idx) => {
-          data.push([
-            idx + 1,
-            r.admissionNo,
-            r.studentName,
-            r.guardianName,
-            r.mobile,
-            r.presentAdmitted,
-            r.presentGrade,
-            r.previousSchooling,
-            r.previousGrade,
-            r.results.eng,
-            r.results.kan,
-            r.results.hin,
-            r.results.sci,
-            r.results.maths,
-            r.results.soc,
-            r.results.sports,
-            r.results.coding,
-            r.remarks,
-            r.signature
-          ]);
-        });
-
-        const ws = XLSX.utils.aoa_to_sheet(data);
-        XLSX.utils.book_append_sheet(wb, ws, schoolName.substring(0, 31));
-      });
-
-      const ay = document.getElementById("academicYearInput").value || "AY";
-      XLSX.writeFile(wb, `Student_Admission_Register_${ay}.xlsx`);
-    }
-
-    document.getElementById("schoolSelect").addEventListener("change", () => {
-      const schoolName = getCurrentSchoolName();
-      loadSchoolIntoTable(schoolName);
-    });
-
-    document.getElementById("academicYearInput").addEventListener("input", syncHeader);
-
-    // Init
-    loadFromStorage();
-    loadSchoolIntoTable(getCurrentSchoolName());
+    showAnnouncements("LKG");
   </script>
-</body>
-</html>
+
+  <!-- STUDENT REGISTER TABLE -->
+  <h2>Student Admission Register</h2>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="addRow()">Add Row</button>
+    <button class="btn-secondary" onclick="saveCurrentSchool()">Save</button>
+    <button class="btn-secondary" onclick="printPage()">Print</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Admission No</th>
+          <th>Student Name</th>
+          <th>Guardian Name</th>
+          <th>Mobile</th>
+          <th>Admitted?</th>
+          <th>Present Grade</th>
+          <th>Prev Schooling?</th>
+          <th>Prev Grade</th>
+          <th>Eng</th>
+          <th>Kan</th>
+          <th>Hin</th>
+          <th>Sci</th>
+          <th>Maths</th>
+          <th>Soc/EVS</th>
+          <th>Sports</th>
+          <th>Coding</th>
+          <th>Remarks</th>
+          <th>Signature</th>
+        </tr>
