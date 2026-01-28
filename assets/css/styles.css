@@ -439,3 +439,25 @@ a:hover {
   opacity: 1;
 }
 
+.scroll-gallery {
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.scroll-track {
+  display: flex;
+  gap: 16px;
+  animation: scroll 25s linear infinite;
+}
+
+.scroll-track img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
