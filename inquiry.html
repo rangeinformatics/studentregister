@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admission Inquiry</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/inquiry.js"></script>
+</head>
+<body>
+
+<div id="schoolHeader"></div>
+
+<h2>Admission Inquiry Form</h2>
+
+<div class="form-box">
+  <label>Student Name</label>
+  <input type="text" id="studentName">
+
+  <label>Parent Name</label>
+  <input type="text" id="parentName">
+
+  <label>Mobile</label>
+  <input type="text" id="mobile">
+
+  <label>Grade Seeking</label>
+  <select id="grade">
+    <option>LKG</option>
+    <option>UKG</option>
+    <option>Grade 1</option>
+    <option>Grade 2</option>
+    <option>Grade 3</option>
+  </select>
+
+  <button onclick="saveInquiry()">Submit Inquiry</button>
+</div>
+
+<script>
+  loadInquiryHeader();
+</script>
+
+</body>
+</html>
