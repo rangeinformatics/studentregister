@@ -378,3 +378,64 @@ a:hover {
     display: none !important;
   }
 }
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-menu a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.nav-menu a:hover {
+  background: #e5f0ff;
+  color: #1d4ed8;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  padding: 20px 28px;
+  background: #111827;
+  color: #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.social-icons img:hover {
+  opacity: 1;
+}
+
