@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Register – Ponderr Schoolz</title>
+  <title>SCULPT – Student Register</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="assets/js/auth.js"></script>
   <script src="assets/js/register.js"></script>
@@ -33,16 +33,70 @@
     <a href="student-register.html" class="active">Register</a>
   </nav>
 
-  <div class="theme-switcher">
-    <button onclick="setTheme('theme-light')" class="btn-ghost">Light</button>
-    <button onclick="setTheme('theme-dark')" class="btn-ghost">Dark</button>
-    <button onclick="setTheme('theme-contrast')" class="btn-ghost">Contrast</button>
-  </div>
+  <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
 </header>
 
 <!-- PAGE CONTENT -->
 <div class="page">
 
+  <!-- ANNOUNCEMENTS -->
+  <h2>School Announcements</h2>
+
+  <div class="grade-tabs">
+    <button onclick="showAnnouncements('LKG')">LKG</button>
+    <button onclick="showAnnouncements('UKG')">UKG</button>
+    <button onclick="showAnnouncements('Grade1')">Grade 1</button>
+    <button onclick="showAnnouncements('Grade2')">Grade 2</button>
+    <button onclick="showAnnouncements('Grade3')">Grade 3</button>
+  </div>
+
+  <table class="announcement-table" id="announcementTable">
+    <thead>
+      <tr>
+        <th>Session</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const announcements = {
+      LKG: [
+        { session: "Color Day", date: "Feb 10", time: "10:00 AM", link: "#" }
+      ],
+      UKG: [
+        { session: "Math Basics", date: "Feb 12", time: "9:30 AM", link: "#" }
+      ],
+      Grade1: [
+        { session: "EVS – Plants", date: "Feb 15", time: "12:00 PM", link: "#" }
+      ],
+      Grade2: [],
+      Grade3: []
+    };
+
+    function showAnnouncements(grade) {
+      const tbody = document.querySelector("#announcementTable tbody");
+      tbody.innerHTML = "";
+
+      announcements[grade].forEach(a => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${a.session}</td>
+          <td>${a.date}</td>
+          <td>${a.time}</td>
+          <td><a href="${a.link}" target="_blank">Join</a></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    showAnnouncements("LKG");
+  </script>
+
+  <!-- STUDENT REGISTER -->
   <h2>Student Admission Register</h2>
 
   <div class="btn-row">
@@ -86,15 +140,13 @@
 <footer class="footer">
   <div class="footer-left">
     <strong>Ponderr Schoolz</strong><br>
-    Powered by <a href="https://rangeinformatics.com" target="_blank">Rangeinformatics</a>
+    Powered by <a href="https://rangeinfo.pro" target="_blank">Rangeinformatics</a>
   </div>
 
   <div class="footer-center">
     <div class="social-icons">
-      <a href="#"><img src="assets/icons/facebook.svg"></a>
-      <a href="#"><img src="assets/icons/twitter.svg"></a>
-      <a href="#"><img src="assets/icons/instagram.svg"></a>
-      <a href="#"><img src="assets/icons/linkedin.svg"></a>
+      <a href="https://facebook.com/alphabudzz" target="_blank"><img src="assets/icons/facebook.svg"></a>
+      <a href="https://linkedin.com/in/rangeinfo" target="_blank"><img src="assets/icons/linkedin.svg"></a>
     </div>
   </div>
 
@@ -103,11 +155,6 @@
     <div>Phone: +91 74060 06666</div>
   </div>
 </footer>
-
-<script>
-  function setTheme(theme) { document.body.className = theme; }
-  loadSchoolIntoTable(school.name);
-</script>
 
 </body>
 </html>
