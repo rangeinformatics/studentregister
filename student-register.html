@@ -19,11 +19,11 @@
 <header class="app-header">
   <div class="app-header-left">
     <div class="app-logo">
-      <img src="assets/logos/ponderr.png" alt="Ponderr Schoolz Logo">
+      <img src="assets/logos/${school.logo}" alt="School Logo">
     </div>
     <div class="app-title">
-      <h1>Ponderr Schoolz</h1>
-      <span>Unified School Management Portal</span>
+      <h1>${school.name}</h1>
+      <span>${school.location}</span>
     </div>
   </div>
 
@@ -31,7 +31,6 @@
     <a href="index.html">Home</a>
     <a href="inquiry.html">Inquiry</a>
     <a href="student-register.html" class="active">Register</a>
-    <a href="signup.html">Add School</a>
   </nav>
 
   <div class="theme-switcher">
@@ -44,99 +43,6 @@
 <!-- PAGE CONTENT -->
 <div class="page">
 
-  <!-- SCHOOL HEADER -->
-  <div class="context-bar">
-    <div class="context-bar-left">
-      <strong>School:</strong> <span id="schoolName"></span>
-      <strong>Location:</strong> <span id="schoolLocation"></span>
-    </div>
-  </div>
-
-  <script>
-    document.getElementById("schoolName").textContent = school.name;
-    document.getElementById("schoolLocation").textContent = school.location;
-  </script>
-
-  <!-- GALLERY SECTION -->
-  <h2>Our Schools & Activities</h2>
-  <div class="scroll-gallery">
-    <div class="scroll-track">
-      <img src="assets/gallery/school1.jpg">
-      <img src="assets/gallery/school2.jpg">
-      <img src="assets/gallery/activity1.jpg">
-      <img src="assets/gallery/activity2.jpg">
-      <img src="assets/gallery/activity3.jpg">
-    </div>
-  </div>
-
-  <!-- APPS BANNER -->
-  <h2>Educational Apps</h2>
-  <div class="apps-banner">
-    <a href="https://byjus.com" target="_blank"><img src="assets/apps/byjus.png"></a>
-    <a href="https://khanacademy.org" target="_blank"><img src="assets/apps/khan.png"></a>
-    <a href="https://duolingo.com" target="_blank"><img src="assets/apps/duolingo.png"></a>
-    <a href="https://vedantu.com" target="_blank"><img src="assets/apps/vedantu.png"></a>
-  </div>
-
-  <!-- ANNOUNCEMENTS -->
-  <h2>Announcements & Live Sessions</h2>
-
-  <div class="grade-tabs">
-    <button onclick="showAnnouncements('LKG')">LKG</button>
-    <button onclick="showAnnouncements('UKG')">UKG</button>
-    <button onclick="showAnnouncements('Grade1')">Grade 1</button>
-    <button onclick="showAnnouncements('Grade2')">Grade 2</button>
-    <button onclick="showAnnouncements('Grade3')">Grade 3</button>
-  </div>
-
-  <table class="announcement-table" id="announcementTable">
-    <thead>
-      <tr>
-        <th>Session</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Link</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  <script>
-    const announcements = {
-      LKG: [
-        { session: "Phonics Live", date: "Feb 2", time: "10:00 AM", link: "#" },
-        { session: "Story Time", date: "Feb 3", time: "11:00 AM", link: "#" }
-      ],
-      UKG: [
-        { session: "Math Basics", date: "Feb 4", time: "9:30 AM", link: "#" }
-      ],
-      Grade1: [
-        { session: "EVS – Plants", date: "Feb 5", time: "12:00 PM", link: "#" }
-      ],
-      Grade2: [],
-      Grade3: []
-    };
-
-    function showAnnouncements(grade) {
-      const tbody = document.querySelector("#announcementTable tbody");
-      tbody.innerHTML = "";
-
-      announcements[grade].forEach(a => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${a.session}</td>
-          <td>${a.date}</td>
-          <td>${a.time}</td>
-          <td><a href="${a.link}" target="_blank">Join</a></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    showAnnouncements("LKG");
-  </script>
-
-  <!-- STUDENT REGISTER TABLE -->
   <h2>Student Admission Register</h2>
 
   <div class="btn-row">
@@ -199,9 +105,8 @@
 </footer>
 
 <script>
-  function setTheme(theme) {
-    document.body.className = theme;
-  }
+  function setTheme(theme) { document.body.className = theme; }
+  loadSchoolIntoTable(school.name);
 </script>
 
 </body>
